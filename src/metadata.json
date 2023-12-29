@@ -1,0 +1,23 @@
+{
+	"title": "md-book-with-docraptor",
+	"subtitle": "A node.js app to convert markdown files to a single webpage as well as two PDFs (content and cover) using DocRaptor.",
+	"imprint": [
+		{ "label": "Text", "value": "Stefan Brechbühl" },
+		{ "label": "Images", "value": "Screenshots" },
+		{
+			"label": "Process",
+			"value": "Markdown → HTML → PDF"
+		},
+		{
+			"label": "Print",
+			"value": "Name of the printing company"
+		},
+		{
+			"label": "Website",
+			"value": "<a href='https://stebre.ch'>stebre.ch</a>"
+		}
+	],
+	"cover_img": "assets/images/cover.png",
+	"imprint_img": "assets/images/imprint.png",
+	"excerpt": "The excerpt is a short description of the book. It is used on the back cover and as meta description."
+}

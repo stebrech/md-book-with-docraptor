@@ -1,0 +1,170 @@
+
+<!doctype html>
+<html lang="de">
+	<head>
+		<title>md-book-with-docraptor</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="The excerpt is a short description of the book. It is used on the back cover and as meta description.">
+		<link rel="stylesheet" href="assets/css/reset.css" />
+		<link rel="stylesheet" href="assets/css/general.css" />
+		<link rel="stylesheet" media="print" href="assets/css/print.css" />
+		<link rel="stylesheet" media="screen" href="assets/css/screen.css" />
+	</head>
+	<body>
+		<main>
+			<div class="progressBar"></div>
+			<article>
+				<header>
+					
+							<img src="assets/images/cover.png" alt="" class="cover no-print" />
+					
+					<h1>md-book-with-docraptor</h1>
+					<p class="subtitle">A node.js app to convert markdown files to a single webpage as well as two PDFs (content and cover) using DocRaptor.</p>
+				</header>
+				<footer>
+					<div class="container">
+						
+							<img src="assets/images/imprint.png" alt="" class="no-print" />
+						
+						<table>
+							
+							<tr>
+								<th>Text</th>
+								<td>Stefan Brechbühl</td>
+							</tr>
+							
+							<tr>
+								<th>Images</th>
+								<td>Screenshots</td>
+							</tr>
+							
+							<tr>
+								<th>Process</th>
+								<td>Markdown → HTML → PDF</td>
+							</tr>
+							
+							<tr>
+								<th>Print</th>
+								<td>Name of the printing company</td>
+							</tr>
+							
+							<tr>
+								<th>Website</th>
+								<td><a href='https://stebre.ch'>stebre.ch</a></td>
+							</tr>
+							
+						</table>
+					</div>
+				</footer>
+				
+					<section>
+					<h2>Install</h2>
+<p>Create a directory and navigate to it:</p>
+<pre><code class="language-sh">mkdir md-book-with-docraptor
+cd md-book-with-docraptor
+</code></pre>
+<p>Download this repository to the new created directory:</p>
+<pre><code class="language-sh">git clone https://github.com/stebrech/md-book-with-docraptor .
+</code></pre>
+<hr>
+<p>Install all the dependencies using your favorite package manager:</p>
+<pre><code class="language-sh">npm install
+</code></pre>
+<p>or</p>
+<pre><code class="language-sh">yarn
+</code></pre>
+
+					</section>
+				
+					<section>
+					<h2>Markdown Files</h2>
+<p>Add your markdown files within the <code>src</code> folder. The name of the files are not used in the output but need to be named to represent the correct order. Therefore you could name the files <code>chapter01.md</code>, <code>chapter02.md</code> and so on.</p>
+<h3>Headings</h3>
+<p>The book title uses a heading 1 and the subtitle a paragraph tag. Each markdown file will be put in a section tag. For semantic reasons and because of the default styles you should begin each markdown file with a heading 2 and use it only once for each chapter.</p>
+<h3>Manual page break</h3>
+<p>The horizontal rule element (<code>&lt;hr&gt;</code>; markdown syntax <code>***</code>) is “misused” to create a manual page or column break. It is set to not visible either for screen and print.</p>
+
+					</section>
+				
+					<section>
+					<h2>Metadata</h2>
+<p>We need some overall metadata which is placed in a json file called <code>metadata.json</code> as well directly in the <code>src</code> folder.</p>
+<p>The following keys are excpected:</p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;md-book-with-docraptor&quot;,
+  &quot;subtitle&quot;: &quot;A node.js app to convert markdown to PDF using Docraptor&quot;,
+  &quot;imprint&quot;: [
+    { &quot;label&quot;: &quot;Text&quot;, &quot;value&quot;: &quot;Stefan Brechbühl&quot; },
+    { &quot;label&quot;: &quot;Images&quot;, &quot;value&quot;: &quot;Screenshots&quot; },
+    {
+      &quot;label&quot;: &quot;Process&quot;,
+      &quot;value&quot;: &quot;Markdown → HTML → PDF&quot;
+    },
+    {
+      &quot;label&quot;: &quot;Print&quot;,
+      &quot;value&quot;: &quot;Name of the printing company&quot;
+    },
+    {
+      &quot;label&quot;: &quot;Website&quot;,
+      &quot;value&quot;: &quot;&lt;a href='https://stebre.ch'&gt;stebre.ch&lt;/a&gt;&quot;
+    }
+  ],
+  &quot;cover_img&quot;: &quot;assets/images/cover.png&quot;,
+  &quot;imprint_img&quot;: &quot;assets/images/cover-photo.png&quot;,
+  &quot;excerpt&quot;: &quot;The excerpt is a short description of the book. It is used on the back cover and as meta description.&quot;
+}
+</code></pre>
+
+					</section>
+				
+					<section>
+					<h2>DocRaptor Key</h2>
+<p>I recommend to put the value of the <code>user_credentials</code> not directly into <code>docraptor.js</code>. You should do the following:</p>
+<ol>
+<li>If you not already opened a DocRaptor account, let’s do that.</li>
+<li>Copy your API key.</li>
+<li>Add a new file called <code>.env</code> into your root folder.</li>
+<li>Write <code>DOCRAPTOR_KEY=</code> and then paste your API key.</li>
+<li>Save the file.</li>
+</ol>
+<figure><img src="assets/images/docraptor-key.jpg" alt="Screenshot of the DocRaptor account page, showing where you can find the API key." tabindex="0"><figcaption>Screenshot of the DocRaptor account page, showing where you can find the API key.</figcaption></figure>
+
+					</section>
+				
+					<section>
+					<h2>Use the scripts</h2>
+<p>There are two scripts in this repository:</p>
+<ol>
+<li><code>md2html.js</code> creates a html of the content and the cover. Of both there will be an additional version which includes the assets (styles, images) inline.</li>
+<li><code>docraptor.js</code> sends two requests to Docraptor. One with <code>content-inline.html</code>, the other with <code>cover-inline.html</code>.</li>
+</ol>
+<p>To run the scripts you need to write</p>
+<ul>
+<li><code>npm html</code> / <code>yarn html</code> or</li>
+<li><code>npm pdf</code> / <code>yarn pdf</code></li>
+</ul>
+<p>in the terminal.</p>
+<hr>
+<p>If you want to run both with one command, use:</p>
+<pre><code class="language-sh">npm start
+</code></pre>
+<p>or</p>
+<pre><code class="language-sh">yarn start
+</code></pre>
+
+					</section>
+				
+					<section>
+					<h2>Adjust the styles</h2>
+<p>Within the <code>general.css</code> file, there are some css variables you can modify or adjust the styles elswhere to fit your needs.</p>
+<h3>Full page images</h3>
+<p>The print styles make all images in the book to be placed on a separate page.</p>
+
+					</section>
+				
+			</article>
+		</main>
+		<script src="assets/scripts/scrollbar.js"></script>
+	</body>
+</html>

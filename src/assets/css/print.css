@@ -1,0 +1,131 @@
+/* Layout */
+@page {
+	size: var(--page-size-width) var(--page-size-height);
+	margin-top: var(--page-margin-top);
+	margin-bottom: var(--page-margin-bottom);
+	margin-outside: var(--page-margin-outside);
+	margin-inside: var(--page-margin-inside);
+	bleed: var(--page-bleed);
+}
+
+@page:left {
+	@bottom-left {
+		content: counter(page);
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+	}
+}
+
+@page:right {
+	@bottom-right {
+		content: counter(page);
+		font-family: var(--font-sans);
+		font-size: 0.8rem;
+		text-align: right;
+	}
+}
+
+@page:first {
+	@bottom-right {
+		content: "";
+	}
+}
+
+@page img:left {
+	margin: var(--page-img-margin-top) var(--page-img-margin-inside)
+		var(--page-img-margin-bottom) var(--page-img-margin-outside);
+	@bottom-left {
+		content: "";
+	}
+}
+
+@page img:right {
+	margin: var(--page-img-margin-top) var(--page-img-margin-outside)
+		var(--page-img-margin-bottom) var(--page-img-margin-inside);
+	@bottom-right {
+		content: "";
+	}
+}
+
+html {
+	font-size: var(--font-size-base-print);
+	orphans: var(--orphans);
+	widows: var(--widows);
+}
+
+header {
+	break-after: page;
+	display: flex;
+	height: var(--page-content-height);
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-bottom: 2rem;
+}
+
+footer {
+	display: flex;
+	height: var(--page-content-height);
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-bottom: 2rem;
+}
+
+section {
+	columns: var(--columns);
+}
+
+/* Typography */
+h1,
+h2 {
+	break-before: page;
+}
+
+/* Elements */
+figure {
+	break-after: page;
+	height: calc(
+		var(--page-size-height) - var(--page-img-margin-top) -
+			var(--page-img-margin-bottom)
+	);
+	page: img;
+	-prince-float: top;
+	width: calc(
+		var(--page-size-width) - var(--page-img-margin-outside) -
+			var(--page-img-margin-inside)
+	);
+}
+
+figure img {
+	--img-content-height: calc(
+		var(--page-size-height) - var(--page-img-margin-top) -
+			var(--page-img-margin-bottom)
+	);
+	--img-content-width: calc(
+		var(--page-size-width) - var(--page-img-margin-outside) -
+			var(--page-img-margin-inside)
+	);
+	--figcaption-height: calc(var(--font-size-smaller) * 2);
+	max-height: calc(
+		var(--img-content-height) - var(--figcaption-height) -
+			var(--figcaption-margin-top)
+	);
+	max-width: var(--img-content-width);
+}
+
+table,
+ul,
+ol,
+figure {
+	break-inside: avoid;
+}
+
+a {
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+/* Utilities */
+
+.no-print {
+	display: none;
+}

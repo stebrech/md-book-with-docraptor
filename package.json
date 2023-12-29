@@ -1,0 +1,26 @@
+{
+	"name": "docraptor-book",
+	"version": "1.0.0",
+	"author": "Stefan Brechbühl",
+	"license": "MIT",
+	"dependencies": {
+		"@mdit/plugin-figure": "^0.6.5",
+		"datauri": "^4.1.0",
+		"dotenv": "^16.3.1",
+		"fs": "^0.0.1-security",
+		"juice": "^9.1.0",
+		"markdown-it": "^13.0.2",
+		"nunjucks": "^3.2.4",
+		"path": "^0.12.7",
+		"request": "^2.88.2"
+	},
+	"scripts": {
+		"start": "node md2html.js && node docraptor.js",
+		"html": "node md2html.js",
+		"pdf": "node docraptor.js"
+	},
+	"devDependencies": {
+		"@stebrech/prettier-config": "^1.0.0",
+		"prettier": "^3.1.0"
+	}
+}

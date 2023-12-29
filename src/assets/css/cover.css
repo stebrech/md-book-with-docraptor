@@ -1,0 +1,99 @@
+/* Layout */
+@page cover {
+	background-color: var(--cover-background);
+	bleed: var(--cover-bleed);
+	size: var(--cover-size-width) var(--page-size-height);
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	page: cover;
+	color: var(--cover-text-color);
+	font-size: 10pt;
+}
+
+body {
+	background-color: var(--cover-background);
+}
+
+article {
+	background-color: transparent;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+header,
+aside {
+	display: flex;
+	flex-direction: column;
+	height: var(--page-size-height);
+	width: var(--page-size-width);
+}
+
+header {
+	break-after: unset;
+	justify-content: space-between;
+	padding: var(--cover-padding-top) var(--cover-padding-outside)
+		var(--cover-padding-bottom) var(--cover-padding-inside);
+}
+
+aside {
+	justify-content: var(--cover-excerpt-position);
+	padding: var(--cover-padding-top) var(--cover-padding-inside)
+		var(--cover-padding-bottom) var(--cover-padding-outside);
+	order: -1;
+}
+
+.cover-back {
+	columns: 2;
+	orphans: 2;
+	widows: 2;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	break-before: unset;
+	color: var(--cover-text-color);
+	margin-bottom: 0;
+}
+
+aside .title {
+	font-weight: bold;
+}
+
+aside .title,
+aside .subtitle {
+	font-size: 1rem;
+	margin-bottom: 1rem;
+}
+
+aside .title + p,
+aside .subtitle + p {
+	margin-top: 0;
+}
+
+/* ELements */
+figure {
+	background-color: var(--cover-img-background-color);
+	break-after: unset;
+	justify-content: flex-start;
+	max-height: 100%;
+	min-height: calc(100% - var(--cover-padding-top));
+	margin: calc(var(--cover-padding-top) * -1 - var(--cover-bleed)) 0 0
+		calc(var(--cover-padding-inside) * -1);
+	padding-bottom: 2rem;
+	width: calc(var(--page-size-width) + var(--cover-bleed)) !important;
+}
+
+figure img {
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: cover;
+}

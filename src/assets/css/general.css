@@ -1,0 +1,227 @@
+/* --------------------------------------------------------------------------
+ * General variables for print and screen styles
+ * Duplicate the variable into print.css or screen.css if it needs to be different 
+ * -------------------------------------------------------------------------- */
+
+:root {
+	/* Typography */
+	--font-sans: system-ui, sans-serif;
+	--font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+		"DejaVu Sans Mono", monospace;
+	--font-size-base-print: 10pt;
+	--font-size-base-screen: 16px;
+	--font-size-smaller: 0.8rem;
+	--font-space-base: 1rem;
+	--orphans: 3;
+	--widows: 3;
+	--sectionDivider: "🦖"; /* screen only */
+	--columns: 2; /* print only */
+
+	/* Colors */
+	--color-bg: #fff;
+	--color-text: #000;
+	--color-accent: #5c940d;
+	--color-accent-light: #edf4df;
+
+	/* Page Layout */
+	--page-size-width: 205mm;
+	--page-size-height: 150mm;
+	--page-bleed: 3mm;
+	--page-margin-top: 15mm;
+	--page-margin-bottom: 30mm;
+	--page-margin-outside: 15mm;
+	--page-margin-inside: 30mm;
+	--page-content-height: calc(
+		var(--page-size-height) - var(--page-margin-top) - var(--page-margin-bottom)
+	);
+	--page-content-width: calc(
+		var(--page-size-width) - var(--page-margin-outside) -
+			var(--page-margin-inside)
+	);
+
+	/* Image Layout */
+	--page-img-margin-top: 5mm;
+	--page-img-margin-bottom: 10mm;
+	--page-img-margin-outside: 5mm;
+	--page-img-margin-inside: 5mm;
+	--figcaption-margin-top: 0.5rem;
+
+	/* Cover Layout */
+	--cover-background: var(--color-accent);
+	--cover-text-color: var(--color-bg);
+	--cover-size-width: 413mm; /* including spine */
+	--cover-bleed: 3mm;
+	--cover-padding-top: 15mm;
+	--cover-padding-bottom: 15mm;
+	--cover-padding-outside: 15mm;
+	--cover-padding-inside: 30mm;
+	--cover-img-background-color: transparent;
+	--cover-excerpt-position: flex-start; /* possible values: flex-start, center, flex-end */
+}
+
+/* --------------------------------------------------------------------------
+ * General styles which are needed for both print and screen styles 
+ * -------------------------------------------------------------------------- */
+
+/* Layout */
+body {
+	font-family: var(--font-sans);
+	font-size: 1rem;
+}
+
+footer {
+	font-size: var(--font-size-smaller);
+}
+
+section {
+	overflow: hidden;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-accent);
+	line-height: 1.2;
+	margin: 0 0 1rem 0;
+	text-wrap: balance;
+}
+
+section h2:first-child {
+	margin-top: 0;
+}
+
+h1,
+.title {
+	font-size: 3rem;
+}
+
+.subtitle {
+	font-size: 1.5rem;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+h1,
+.subtitle,
+h2,
+figure,
+table,
+img {
+	column-span: all;
+}
+
+h3 {
+	font-size: 1.5rem;
+	margin-top: calc(var(--font-space-base) * 2);
+}
+
+h4,
+h5,
+h6 {
+	font-size: 1rem;
+	margin-top: calc(var(--font-space-base) * 1.5);
+}
+
+p {
+	margin: var(--font-space-base) 0 0 0;
+}
+
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p {
+	margin-top: 0;
+}
+
+/* Elements */
+figure {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+figure figcaption {
+	font-size: var(--font-size-smaller);
+	margin-top: var(--figcaption-margin-top);
+	text-align: center;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+th,
+td {
+	padding-right: 1rem;
+	text-align: left;
+	vertical-align: top;
+}
+
+ol,
+ul {
+	margin: 0 0 0 calc(var(--font-space-base) * 2);
+	padding: 0;
+}
+
+/* Code */
+
+code,
+kbd,
+pre,
+samp {
+	font-family: var(--font-mono);
+	font-size: var(--font-size-smaller);
+	line-height: inherit;
+	direction: ltr;
+	text-align: left;
+	word-spacing: normal;
+
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+code,
+pre {
+	border-radius: 0.25rem;
+	color: var(--color-text);
+}
+
+pre {
+	background: var(--color-accent-light);
+	border-left: 0.4rem solid var(--color-accent);
+	line-height: var(--line-height-normal);
+	margin: var(--font-space-base) 0 0 0;
+	padding: var(--font-space-base);
+	white-space: pre-wrap;
+}
+
+:not(pre) > code {
+	background: var(--color-accent-light);
+	padding: calc(var(--font-space-base) / 5) calc(var(--font-space-base) / 4);
+	vertical-align: middle;
+	word-break: normal;
+}
+
+/* Utilities */
+
+hr {
+	visibility: hidden;
+	break-after: page;
+	break-after: column;
+}

@@ -1,0 +1,8 @@
+# Keep environment variables out of the codebase
+.env
+
+# Mac OS X file system metadata
+.DS_Store
+
+# Node.js dependencies
+node_modules

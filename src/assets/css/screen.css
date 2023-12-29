@@ -1,0 +1,228 @@
+/* Docraptor ignores the media="screen" link attribute. Therefore we use @media screen to apply the styles only for the screen. */
+
+@media screen {
+	/* Layout */
+	html {
+		background: var(--color-bg);
+		font-size: var(--font-size-base-screen);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+
+	@media (min-width: 40rem) {
+		html {
+			font-size: 112.5%;
+		}
+	}
+
+	@media (min-width: 60rem) {
+		html {
+			font-size: 125%;
+		}
+	}
+
+	@media (min-width: 80rem) {
+		html {
+			font-size: 150%;
+		}
+	}
+
+	body {
+		height: 100%;
+		overflow-y: scroll;
+	}
+
+	article {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		width: 100%;
+	}
+
+	header {
+		align-items: flex-start;
+		background: var(--color-accent);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding-bottom: 10vh;
+		position: relative;
+		width: 100%;
+		z-index: 1;
+	}
+
+	header .cover {
+		display: block;
+		height: 100vh;
+		left: 0;
+		object-fit: cover;
+		opacity: 0.5;
+		position: absolute;
+		top: 0;
+		width: 100vw;
+		z-index: -2;
+	}
+
+	header::after {
+		background: linear-gradient(
+			180deg,
+			rgba(0, 0, 0, 0) 0%,
+			var(--color-accent) 70%,
+			var(--color-accent) 100%
+		);
+		content: "";
+		display: block;
+		height: 75vh;
+		left: 0;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 0;
+	}
+
+	header h1,
+	header .subtitle {
+		margin: 0 auto;
+		max-width: 50rem;
+		width: 100%;
+		padding: 1rem 1rem 0;
+		z-index: 1;
+	}
+
+	header h1 {
+		color: var(--color-bg);
+	}
+
+	header {
+		min-height: 100vh;
+	}
+
+	@media (min-width: 52rem) {
+		header > * {
+			width: 50rem;
+		}
+	}
+
+	section {
+		columns: 1;
+		max-width: 50rem;
+		padding: 5rem 1rem 0;
+		position: relative;
+	}
+
+	@media (min-width: 52rem) {
+		section {
+			padding-top: 10rem;
+			width: 50rem;
+		}
+
+		section:first-of-type {
+			padding-top: 5rem;
+		}
+	}
+
+	section:not(:first-of-type)::before {
+		color: var(--color-accent);
+		content: var(--sectionDivider);
+		font-size: 2rem;
+		position: absolute;
+		left: 50%;
+		top: 0rem;
+	}
+
+	@media (min-width: 52rem) {
+		section:not(:first-of-type)::before {
+			top: 2.5rem;
+		}
+	}
+
+	section:last-of-type {
+		padding-bottom: 2.5rem;
+	}
+
+	@media (min-width: 52rem) {
+		section:last-of-type {
+			padding-bottom: 5rem;
+		}
+	}
+
+	footer {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		box-shadow: 0px 20px 20px inset rgba(0, 0, 0, 0.05);
+		display: flex;
+		justify-content: center;
+		margin-top: 4rem;
+		order: 99;
+		width: 100%;
+	}
+
+	footer > .container {
+		display: grid;
+		justify-items: center;
+		gap: 3rem;
+		max-width: 50rem;
+		padding: 3rem 1rem 2rem;
+		width: 100%;
+	}
+
+	@media (min-width: 50rem) {
+		footer > .container {
+			grid-template-columns: 1fr 3fr;
+			justify-items: start;
+		}
+	}
+
+	/* Elements */
+
+	figure {
+		align-items: center;
+		justify-content: flex-start;
+		margin: 4rem 0;
+	}
+
+	img {
+		max-height: 80vh;
+	}
+
+	figcaption {
+		color: var(--color-accent);
+		font-weight: bold;
+	}
+
+	.container img {
+		max-width: 10rem;
+	}
+
+	a {
+		color: var(--color-accent);
+		text-underline-offset: 0.1rem;
+		text-decoration-thickness: 0.05rem;
+	}
+
+	.progressBar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 0.5rem;
+		background: var(--color-accent);
+		width: 0%;
+		z-index: 100;
+		transition: width 0.2s ease-out;
+	}
+}
+
+/* Selection */
+
+*::-moz-selection,
+* ::-moz-selection,
+*::selection,
+* ::selection {
+	background: var(--color-accent);
+	color: #fff;
+}
