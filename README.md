@@ -2,7 +2,7 @@
 
 # md-book-with-docraptor
 
-A node.js app to convert markdown files to a single webpage as well as two PDFs (content and cover) using DocRaptor.
+A node.js app to convert markdown files to a [single webpage](https://stebrech.github.io/md-book-with-docraptor/src/content.html) as well as two PDFs (content and cover) using DocRaptor.
 
 ## Install
 
