@@ -4,12 +4,12 @@
 	"author": "Stefan Brechbühl",
 	"license": "MIT",
 	"dependencies": {
-		"@mdit/plugin-figure": "^0.6.5",
+		"@mdit/plugin-figure": "^0.9.0",
 		"datauri": "^4.1.0",
 		"dotenv": "^16.3.1",
 		"fs": "^0.0.1-security",
-		"juice": "^9.1.0",
-		"markdown-it": "^13.0.2",
+		"juice": "^10.0.0",
+		"markdown-it": "^14.1.0",
 		"nunjucks": "^3.2.4",
 		"path": "^0.12.7",
 		"request": "^2.88.2"
