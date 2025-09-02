@@ -4,23 +4,19 @@
 	"author": "Stefan Brechbühl",
 	"license": "MIT",
 	"dependencies": {
-		"@mdit/plugin-figure": "^0.9.0",
+		"@mdit/plugin-figure": "^0.22.1",
+		"axios": "^1.11.0",
 		"datauri": "^4.1.0",
-		"dotenv": "^16.3.1",
+		"dotenv": "^17.2.1",
 		"fs": "^0.0.1-security",
-		"juice": "^10.0.0",
+		"juice": "^11.0.1",
 		"markdown-it": "^14.1.0",
 		"nunjucks": "^3.2.4",
-		"path": "^0.12.7",
-		"request": "^2.88.2"
+		"path": "^0.12.7"
 	},
 	"scripts": {
 		"start": "node md2html.js && node docraptor.js",
 		"html": "node md2html.js",
 		"pdf": "node docraptor.js"
-	},
-	"devDependencies": {
-		"@stebrech/prettier-config": "^1.0.0",
-		"prettier": "^3.1.0"
 	}
 }

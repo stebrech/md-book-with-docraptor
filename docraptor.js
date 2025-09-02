@@ -1,4 +1,4 @@
-const request = require("request");
+const axios = require("axios");
 const fs = require("fs");
 require("dotenv").config();
 
@@ -16,32 +16,44 @@ files.push(content, cover);
 for (let i = 0; i < files.length; i++) {
 	config = {
 		url: "https://api.docraptor.com/docs",
-		encoding: null, //IMPORTANT! This produces a binary body response instead of text
+		method: "post",
+		responseType: "arraybuffer", //IMPORTANT! Required to fetch the binary PDF
 		headers: {
 			"Content-Type": "application/json",
 		},
-		json: {
+		data: {
 			user_credentials: process.env.DOCRAPTOR_KEY,
 			doc: {
+				test: true, // test documents are free but watermarked
+				document_type: "pdf",
 				document_content: files[i].path,
-				type: "pdf",
-				test: true,
+				// document_url: "https://docraptor.com/examples/invoice.html",
+				// javascript: true,
 				prince_options: {
-					media: "print",
+					media: "print", // @media 'screen' or 'print' CSS
 					profile: "PDF/X-4",
-				},
+					// baseurl: "https://yoursite.com", // the base URL for any relative URLs
+				}
 			},
 		},
 	};
 
-	request.post(config, function (err, response, body) {
-		fs.writeFile(
-			`./pdf/${files[i].name}.pdf`,
-			body,
-			"binary",
-			function (writeErr) {
-				console.log(`${files[i].name}.pdf has been saved!`);
-			}
-		);
-	});
+	axios(config)
+		.then(function (response) {
+			fs.writeFile(
+				`./pdf/${files[i].name}.pdf`,
+				response.data,
+				"binary",
+				function (writeErr) {
+					if (writeErr) throw writeErr;
+					console.log(`Saved ${files[i].name}.pdf!`);
+				},
+			);
+		})
+		.catch(function (error) {
+			// DocRaptor error messages are contained in the response body
+			// Since the response is binary encoded, let's decode
+			var decoder = new TextDecoder("utf-8");
+			console.log(decoder.decode(error.response.data));
+		});
 }
