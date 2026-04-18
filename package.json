@@ -4,7 +4,7 @@
 	"author": "Stefan Brechbühl",
 	"license": "MIT",
 	"dependencies": {
-		"@mdit/plugin-figure": "^0.22.1",
+		"@mdit/plugin-figure": "^0.23.2",
 		"axios": "^1.11.0",
 		"datauri": "^4.1.0",
 		"dotenv": "^17.2.1",
